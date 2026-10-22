@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Блиц-опрос — студент</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Блиц-опрос — студент</h1>
+  <p class="sub"><span id="conn" class="statusdot"></span><span id="conn-text">нет связи с сервером</span></p>
+
+  <section id="sec-join" class="card">
+    <h2>Вход</h2>
+    <label for="in-room">Код комнаты (от преподавателя)</label>
+    <input type="text" id="in-room" maxlength="12" placeholder="например, A7B2K" autocomplete="off">
+    <label for="in-name">Ваше имя и фамилия</label>
+    <input type="text" id="in-name" maxlength="40" placeholder="Иван Иванов" autocomplete="off">
+    <div class="row" style="margin-top:14px">
+      <button id="btn-join">Войти в комнату</button>
+    </div>
+  </section>
+
+  <section id="sec-wait" class="card hidden">
+    <h2>Ожидание</h2>
+    <p id="wait-text" class="muted">Ждём начала…</p>
+  </section>
+
+  <section id="sec-question" class="card hidden">
+    <p class="muted" id="q-round"></p>
+    <h2 id="q-type"></h2>
+    <div class="timer">
+      <div class="num" id="t-num">–</div>
+      <div class="bar" id="t-bar"><i id="t-fill"></i></div>
+    </div>
+    <div id="q-choice" class="hidden">
+      <div class="optgrid" id="q-options"></div>
+    </div>
+    <div id="q-textblock" class="hidden">
+      <label for="q-input">Ваш ответ</label>
+      <input type="text" id="q-input" maxlength="200" autocomplete="off">
+      <div class="row" style="margin-top:12px">
+        <button id="q-send">Отправить ответ</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-sent" class="card hidden">
+    <h2>Ответ принят</h2>
+    <p id="sent-text" class="muted"></p>
+  </section>
+
+  <section id="sec-late" class="card hidden">
+    <h2>Время вышло</h2>
+    <p id="late-text" class="muted"></p>
+  </section>
+
+  <section id="sec-judge" class="card hidden">
+    <h2>Раунд завершён</h2>
+    <p id="verdict"></p>
+  </section>
+
+  <section id="sec-final" class="card hidden">
+    <h2>Итоги теста</h2>
+    <p><b id="me-name"></b></p>
+    <p><span id="me-chip" class="chip hidden"></span></p>
+    <p id="me-stats"></p>
+    <div id="groups-box" style="margin-top:14px"></div>
+  </section>
+</div>
+<script src="js/common.js"></script>
+<script src="js/student.js"></script>
+</body>
+</html>

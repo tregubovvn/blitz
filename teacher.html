@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Блиц-опрос — преподаватель</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Блиц-опрос — панель преподавателя</h1>
+  <p class="sub"><span id="conn" class="statusdot"></span><span id="conn-text">нет связи с сервером</span></p>
+
+  <section id="sec-setup" class="card">
+    <h2>Открыть комнату</h2>
+    <p class="muted">Введите код комнаты или оставьте поле пустым — код будет создан автоматически.
+    Сообщите код студентам. Вопросы писать не нужно: вы выбираете только тип раунда.</p>
+    <div class="row">
+      <div class="grow">
+        <label for="room-id">Код комнаты</label>
+        <input type="text" id="room-id" maxlength="12" placeholder="например, A7B2K" autocomplete="off">
+      </div>
+      <div class="grow">
+        <label for="teacher-pass">Пароль учителя (только если настроен на сервере)</label>
+        <input type="password" id="teacher-pass" autocomplete="off">
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button id="btn-open">Открыть комнату</button>
+    </div>
+  </section>
+
+  <section id="sec-lobby" class="card hidden">
+    <h2>Комната: <code class="room" id="lobby-room"></code></h2>
+    <p class="muted">Студенты открывают страницу студента и вводят этот код (можно зайти в любой момент, даже посреди теста).</p>
+    <label for="stu-link">Ссылка для студентов</label>
+    <div class="row">
+      <input type="text" id="stu-link" readonly class="grow">
+      <button id="btn-copy" class="ghost">Копировать</button>
+    </div>
+    <h2>Студенты в комнате (<span id="stu-count">0</span>)</h2>
+    <ul class="students" id="stu-list"></ul>
+    <h2>Запустить раунд</h2>
+    <button class="big" id="btn-choice">Варианты А, Б, С, Д, Е — на ответ 20 секунд</button>
+    <button class="big" id="btn-text">Ввод текста — на ответ 40 секунд</button>
+    <div class="row" style="margin-top:18px">
+      <button id="btn-finish" class="danger" disabled>Завершить тест и разделить на группы</button>
+    </div>
+  </section>
+
+  <section id="sec-round" class="card hidden">
+    <h2 id="round-title"></h2>
+    <div class="timer">
+      <div class="num" id="t-num">–</div>
+      <div class="bar" id="t-bar"><i id="t-fill"></i></div>
+    </div>
+    <p id="judged-note" class="muted"></p>
+    <div id="answers"></div>
+    <div class="row" style="margin-top:14px">
+      <button id="btn-skip" class="ghost">Закрыть раунд без правильного ответа</button>
+    </div>
+    <div id="round-controls" class="row hidden" style="margin-top:14px">
+      <button id="btn-next">Следующий раунд</button>
+      <button id="btn-finish2" class="danger">Завершить тест</button>
+    </div>
+  </section>
+
+  <section id="sec-final" class="card hidden">
+    <h2>Итоги теста</h2>
+    <p class="muted">Балл = 70% за верные ответы + 30% за скорость (меньше суммарное время — лучше).
+    Группы: 50% лучших — «отлично», следующие 30% — «хорошо», последние 20% — «удовлетворительно».</p>
+    <table>
+      <thead>
+        <tr><th>Место</th><th>Студент</th><th>Верно</th><th>Неверно</th><th>Время</th><th>Балл</th><th>Группа</th></tr>
+      </thead>
+      <tbody id="final-body"></tbody>
+    </table>
+    <div class="row" style="margin-top:16px">
+      <button id="btn-csv" class="ghost">Скачать CSV</button>
+      <button id="btn-new">Новый тест (сбросить результаты)</button>
+    </div>
+  </section>
+</div>
+<script src="js/common.js"></script>
+<script src="js/teacher.js"></script>
+</body>
+</html>
